@@ -1,0 +1,12 @@
+void main() {
+List<int> numbers = [0, 1 ,3,14];
+print(resultFunction(numbers));
+  
+}
+double resultFunction(List<int> numbers){
+    int sum=0;
+    for(var el in numbers){
+    sum+=el;
+  }
+  return (sum/(numbers.length));
+}
