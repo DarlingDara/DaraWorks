@@ -1,0 +1,13 @@
+void main() {
+int year =2020;
+  bool result=topYear(year);
+  if(result)
+    print("Год высокосный");
+   else
+     print("Год не высокосный(");
+}
+bool topYear(int year){
+  if (year%4==0) return true;
+   else
+     return false;
+}
