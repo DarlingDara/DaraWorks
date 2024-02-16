@@ -1,0 +1,10 @@
+void main() {
+  String str1 = "Mik Dariya is name My";
+  print(reversFunction(str1));
+  
+}
+String reversFunction(String str){
+  List<String> stringList = str.split(' ');
+  List<String> reversList = stringList.reversed.toList();
+  return reversList.join(' ');
+}
