@@ -1,0 +1,9 @@
+void main() {
+  List<int> numbers = [0, -13, 8, 90, 8, -16, 9];
+  print(sortFunction(numbers));
+}
+List<int> sortFunction(List<int> numbers){
+ List<int> sortNumbers = List.from(numbers);
+  sortNumbers.sort((a,b)=> a.compareTo(b));
+  return sortNumbers;
+}
