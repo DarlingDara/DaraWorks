@@ -1,0 +1,13 @@
+void main() {
+List<int> numbers = [0, 9, 8, 121, 789, 80, 78, 56,89];
+ print("список чётных чисел ${everNumber(numbers)}");
+
+}
+List<int> everNumber(List<int> numbers){
+  List<int> everNumbers=[];
+  for(int el in numbers){
+    if (el%2==0) 
+      everNumbers.add(el);
+  }
+  return everNumbers;
+}
