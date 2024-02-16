@@ -1,0 +1,14 @@
+import 'dart:math';
+void main() {
+
+  print(powerFunction(2));
+
+}
+List<int> powerFunction(int n){
+  List<int> twoPower = [];
+  for(int i=0; i<6; i++){
+    twoPower.add(pow(n,i+1).toInt());
+  }
+  return twoPower;
+}
+
