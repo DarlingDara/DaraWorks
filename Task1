@@ -1,0 +1,18 @@
+class Logging{
+  String ? str;
+  Logging([this.str]){
+    if(str!=null){
+      print("New object by class Logging will be create");
+    }
+    else
+      start();
+  }
+  void start(){
+    
+    print("Programm start work");
+  }
+}
+void main() {
+ Logging();
+  Logging request = Logging("My message");
+}
