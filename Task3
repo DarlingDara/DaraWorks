@@ -1,0 +1,55 @@
+/*я использовала паттерн стратегия в методе changeUser, 
+в зависимости от переанного имени поля мы можем выбирать какое свойство у какого объекта хотим изменить*/
+abstract class User {   
+   late int id;
+   late String name;
+   late int age;   
+   late int telephon;
+   
+   User(this.id, this.name,this.age, this.telephon);
+}
+class UserTask extends User{
+   UserTask(int id, String name, int age, int telephon): super(id, name, age, telephon);
+  void getSpetialUse(var x){
+    print("$x by User $id");
+  }
+  void getUser(){
+    print("id: $id / name = $name / age = $age / tel = $telephon");
+  }
+  void removeUser() {
+    print("Объект удалить не могу, его соберет сбощик мусора");
+  }
+void changeUser(String nameField, var value) {
+    switch (nameField) {
+      case 'id':
+        id = value;
+        break;
+      case 'name':
+        name = value;
+        break;
+      case 'age':
+        age = value;
+        break;
+      case 'telephon':
+        telephon = value;
+        break;
+      default:
+        print("Ошибка ввода: Неверное имя свойства");
+        break;
+    }
+}
+}
+void main()
+{
+  UserTask user1 = UserTask(1, "Ivan", 19, 37847492);
+  UserTask user2 = UserTask(2, "Dashenka", 20, 77734555);
+  user1.getUser();
+  user1.getSpetialUse(user1.telephon);
+  user2.getSpetialUse(user2.telephon);
+  user1.getSpetialUse(user1.name);
+  user2.getSpetialUse(user2.age);
+  user1.getSpetialUse(user1.age);
+  user1.changeUser("age", 21);
+  user1.getUser();
+  user1.removeUser();
+ }
