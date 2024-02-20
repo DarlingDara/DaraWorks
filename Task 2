@@ -1,0 +1,75 @@
+/* первый способ использовала только шаблонный метод, 
+тк в суперклассе определила общую структуру алгоритма, а подклассы предсьавляют свои реализации его исполнения*/
+abstract class IDoc{
+  late String format;
+  prFormat(String format){
+    print("by $format format");
+  }
+   String createDocFunction()
+  {
+    return "Document was created";
+  } 
+}
+class PDFDoc extends IDoc{
+  @override
+  String format = "PDF";
+}
+class HTMLDoc extends IDoc{
+  @override
+  String format = "HTML";
+}
+class TXTDoc extends IDoc{
+  @override
+  String format = "TXT";
+}
+void main() {
+ PDFDoc pdf = PDFDoc();
+  print(pdf.createDocFunction());
+  pdf.prFormat(pdf.format);
+  HTMLDoc html = HTMLDoc();
+  print(html.createDocFunction());
+  pdf.prFormat(html.format);
+  TXTDoc txt = TXTDoc();
+  print(txt.createDocFunction());
+  pdf.prFormat(txt.format);
+  
+}
+/*второй способ (шаблонный + фабричный). шаблонный - Тк метод createDocFunction - шаблонный, но шаги реализ ост в подклассах +
+фабричный - тк каждый из подклассов предоставляет свой способ создания экз. документа исольз конструктор*/
+abstract class IDoc{
+  
+  late String format;
+  IDoc(this.format);
+  
+  prFormat(String format){
+    print("by $format format");
+  }
+  
+   String createDocFunction()
+  {
+    return "Document was created";
+  } 
+}
+class PDFDoc extends IDoc {
+  PDFDoc() : super("PDF");
+}
+
+class HTMLDoc extends IDoc {
+  HTMLDoc() : super("HTML");
+}
+
+class TXTDoc extends IDoc {
+  TXTDoc() : super("TXT");
+}
+void main() {
+  PDFDoc pdf = PDFDoc();
+  print(pdf.createDocFunction());
+  pdf.prFormat(pdf.format);
+  HTMLDoc html = HTMLDoc();
+  print(html.createDocFunction());
+  pdf.prFormat(html.format);
+  TXTDoc txt = TXTDoc();
+  print(txt.createDocFunction());
+  pdf.prFormat(txt.format);
+  
+}
