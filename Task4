@@ -1,0 +1,68 @@
+/*здесь также реализован паттерн стратегия, я создала интерфейс(абстрактный класс) Register, из него наследовала 
+RegisterBase, в котором реализовала процесс авторизации пользователя при помощи имени и пароля.
+Создала отдельный класс пользователей, через который запонила базу объектами.*/
+
+abstract class Register{
+  void checkAllDate(String name, var password);
+  int inputName(String name);
+  int inputPassword(var pass);
+}
+class User{
+  static int _id=0;
+  final String name;
+  final password;
+  static List <User> users = [];
+  
+  User(this.name,this.password){
+    _id++;
+    print("пользователь $name добавлен под номером $id");
+    users.add(this);
+  }
+  
+  int get id=> _id;
+}
+
+class RegisterBase implements Register{
+  
+ @override
+  void checkAllDate(String name, var password){
+    int rez=inputName(name);
+    if (rez!=-1 && inputPassword(password)==rez)
+      print("Вы вошли в аккаунт");
+   
+  }
+  int inputName(String name){
+    for(User el in User.users){
+      if(el.name ==name){
+        print("$name Пользователь с тамим именем найден");
+        return el.id;
+      }
+       }
+     print("$name Пользователь с тамим именем не найден");
+    return -1;
+       
+  }
+  int inputPassword(var pass){
+    for(User el in User.users){
+      if(el.password ==pass){
+        print("Такой пароль есть вазе//вымышленная авторизация))");
+        return el.id;
+      }
+    }
+    print("Пароля в базе нет");
+    return -1;
+  }
+}
+
+void main(){
+  
+  User user1 = User( "Mark", 123456);
+  User user2 = User( "Nik", 111111);
+  User user3 = User( "Liza", "qwerty");
+  print("Хотите авторизоваться, впишите ваше имя и пароль");
+  RegisterBase step1 = RegisterBase();
+  step1.checkAllDate("Dasha", 2176362);
+  step1.checkAllDate("Liza", 2312321);
+  step1.checkAllDate( "Liza", "qwerty");
+  
+}
