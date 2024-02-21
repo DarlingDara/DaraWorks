@@ -1,24 +1,4 @@
-//Это первая мини версия....
-class Logging{
-  String ? str;
-  Logging([this.str]){
-    if(str!=null){
-      print("New object by class Logging will be create");
-    }
-    else
-      start();
-  }
-  void start(){
-    
-    print("Programm start work");
-  }
-}
-void main() {
- Logging();
-  Logging request = Logging("My message");
-}
-
-/*А тут 2 версия) я поработала.  Из паттернов тут Singleton, тк я создала только 1 объект Logging, но можно и больше + Стратегия(Из classa Functional можно 
+/* Из паттернов тут Singleton, тк я создала только 1 объект Logging, но можно и больше + Стратегия(Из classa Functional можно 
 развить несколько вариантов реализации Logging - один из них*/
 abstract class Functional{ 
   void authorization(String name);
