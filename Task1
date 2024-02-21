@@ -1,3 +1,4 @@
+//Это первая мини версия....
 class Logging{
   String ? str;
   Logging([this.str]){
@@ -15,4 +16,132 @@ class Logging{
 void main() {
  Logging();
   Logging request = Logging("My message");
+}
+
+/*А тут 2 версия) я поработала.  Из паттернов тут Singleton, тк я создала только 1 объект Logging, но можно и больше + Стратегия(Из classa Functional можно 
+развить несколько вариантов реализации Logging - один из них*/
+abstract class Functional{ 
+  void authorization(String name);
+  void checkProduct(int cost, int balance); 
+  void checkBalance(int balance, int cost);
+  bool buyProduct(String answer);
+  void pay(bool rez, int balance, int cost,Client user);  
+  void start();
+  void offer();
+  
+ }
+class Client{
+  final String name;
+  final String address;
+  int balance;
+  
+  static int id=0;
+  Client(this.name,this.address, this.balance){
+     id++;
+    
+    if (balance<0){
+      print("Ошибка ввода");
+    }
+  }
+  setBalance(int newBalance){
+    if(newBalance>0){
+      balance = newBalance;
+    }
+    else
+      print("ошибка ввода");
+  }
+  
+}
+class Product{
+  late int cost;
+  final String choce;
+  Product(this.choce){
+     switch(choce){
+    case "bag":
+      cost = 100;
+      break;
+    case "backpack":
+      cost = 1000;
+      break;
+    case "suitcase":
+     cost = 10000;
+      break;
+    default:
+      cost =0;
+      break;
+  }
+ print("Вы хотите заказать $choce");
+      
+  }
+  
+  
+}
+class Logging implements Functional{
+ 
+ 
+  @override
+  void authorization(String name)
+  {
+    print("Здравствуте, $name!");
+  }
+  @override
+  void checkProduct(int cost, int balance)
+  {
+    if(cost!=0){
+      print("Найден ваш товар, стоимость $cost \$");
+      checkBalance(cost, balance);
+    }
+  } 
+  @override
+  void checkBalance(int cost, int balance)
+  {
+    if(balance>= cost){
+      print("подтверждаете покупку?");
+      
+    }else print("недостаточно средств");
+      
+  } 
+  @override
+  bool buyProduct(String answer){
+    switch(answer){
+    case "yes":
+      print("Заказ принят");
+      return true;
+    case "no":
+      print("Отмена");
+    default:
+      return false;
+    }
+     return false;
+  }
+  @override
+  void pay(bool rez, int balance, int cost,Client user)
+  {
+    if(rez){
+      user.setBalance(balance-=cost);
+      print("Заказ успешно принят доставка для ${user.name} по адрессу ${user.address}. Ваш баланс $balance. Благодарим за заказ!");
+    }
+  }
+
+  void start(){
+        print("Programm start work");
+  }
+  void offer(){
+  print("Для заказа сумки введите bag, рюкзака - backpac, чемодана - suitcase");
+   }
+}
+void main() {
+  Logging().start();
+  Logging task1 = Logging();
+  Client user = Client("Victor", "Mira 34", 1000);
+  task1.offer();
+  String ord="bag";
+  Product order=Product(ord);
+  task1.checkProduct(order.cost, user.balance);
+  String answer ="yes";
+  print(answer);
+  bool orderRequest = task1.buyProduct(answer);
+  task1.pay(orderRequest, user.balance, order.cost, user);
+  
+  
 }
