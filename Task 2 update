@@ -1,0 +1,34 @@
+/*наасколько я поняла тут задействована стратегия, где каждый тип документа может быть разной стратегией +
+фабричный метод, так я наследую IDoc в DocConstructor, а createDoc это фабричный метод*/
+
+abstract class IDoc{
+  String createDoc();
+}
+enum DocType{
+  txt,
+  json,
+  html,
+  pdf,
+}
+class DocConstructor implements IDoc{
+  final DocType choice;
+  DocConstructor(this.choice);
+  @override
+  String createDoc() {
+    switch (choice) {
+      case DocType.txt:
+      case DocType.json:
+      case DocType.html:
+      case DocType.pdf:
+        return "Вы создали ${this.choice.toString().split('.').last} документ";
+      
+    }
+  }
+}
+
+void main() {
+  final doc1 = DocConstructor(DocType.txt);
+  print(doc1.createDoc());
+  
+  
+}
