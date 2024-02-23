@@ -1,0 +1,62 @@
+abstract class AutoStrategy
+{  
+  void call();
+}
+class EmailPassStr implements AutoStrategy{
+  final String email;
+  final String pass;
+  
+  const EmailPassStr(
+    {    required this.email,
+         required this.pass  
+    });
+  
+  @override  void call(){
+    
+    print ('Autorized with $email & $pass'); 
+  }
+} 
+class LogginPassStr implements AutoStrategy{
+  final String loggin;
+  final String pass;
+  
+  const LogginPassStr(
+    {    required this.loggin,
+         required this.pass  
+    });
+  
+  @override  void call(){
+    
+    print ('Autorized with $loggin & $pass'); 
+  }
+} 
+class NumberStr implements AutoStrategy{
+  final int number;
+  final String pass;
+  final int code;
+  
+  const NumberStr(
+    {    required this.number,
+         required this.pass,
+         required this.code  
+    });
+  
+  @override  void call(){
+    
+    print ('Autorized with number: $number pass: $pass code: $code'); 
+  }
+}
+bool autorize(AutoStrategy strategy)
+{
+    strategy.call();    
+    return true;
+ }
+void main()
+{  
+  final email = EmailPassStr( email: 'wqwdq@gamil.com', pass: '21312');
+  final loggin = LogginPassStr( loggin: 'darlingdara', pass: '21312');
+  final tel = NumberStr( number: 77782345, pass: '21312', code: 1234);
+  autorize(email);
+  autorize(loggin);
+  autorize(tel);
+}
